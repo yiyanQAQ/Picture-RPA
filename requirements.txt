@@ -1,0 +1,6 @@
+pyautogui
+pyperclip
+pynput
+Pillow
+opencv-python
+xlrd
