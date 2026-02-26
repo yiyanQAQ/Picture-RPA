@@ -18,8 +18,8 @@
 ### 目录结构
 - `main.py`: 程序入口
 - `gui.py`: UI与事件逻辑
-- `utils.py`: 截图工具
-- `constants.py`: 配置项
+- `screenshot.py`: 截图工具
+- `constants.py`: 配置
 - `snips/`: 截图保存目录
 
 ### 运行
