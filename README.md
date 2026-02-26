@@ -25,7 +25,7 @@
 ### 运行
 1. **克隆**:
    ```bash
-   git clone https://github.com/yiyanQAQ/Picture_RPA.git
+   git clone https://github.com/yiyanQAQ/Picture-RPA.git
    ```
 2. **配置环境**:
    ```bash
@@ -61,7 +61,7 @@ A lightweight RPA tool based on image recognition.
 ### Installation
 1. **Clone**:
    ```bash
-   git clone https://github.com/yiyanQAQ/Picture_RPA.git
+   git clone https://github.com/yiyanQAQ/Picture-RPA.git
    ```
 2. **Environment**:
    ```bash
