@@ -1,4 +1,4 @@
-# Picture RPA v3.0
+# Picture RPA
 
 [中文](#中文) | [English](#english)
 
