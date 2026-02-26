@@ -1,64 +1,15 @@
 #coding=utf-8
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox, simpledialog
+from tkinter import ttk, filedialog, messagebox
 import pyautogui
 import pyperclip
 import time
 import threading
 import json
-import subprocess
 import os
 from pynput import keyboard
-from PIL import ImageGrab, ImageTk
-
-COLOR_BG_CREAM = "#F3F3F3"
-COLOR_PINK_ROSE = "#E1E1E1"
-COLOR_SLATE_PURPLE = "#0078D4"
-
-class SnippingTool:
-    """截图工具"""
-    def __init__(self, master, callback):
-        self.master = master
-        self.callback = callback
-        self.snip_win = tk.Toplevel(master)
-        self.snip_win.attributes("-alpha", 0.3)
-        self.snip_win.attributes("-fullscreen", True)
-        self.snip_win.attributes("-topmost", True)
-        self.snip_win.config(cursor="cross")
-        
-        self.canvas = tk.Canvas(self.snip_win, cursor="cross", bg="grey")
-        self.canvas.pack(fill=tk.BOTH, expand=True)
-        
-        self.start_x = None
-        self.start_y = None
-        self.rect = None
-        
-        self.canvas.bind("<ButtonPress-1>", self.on_button_press)
-        self.canvas.bind("<B1-Motion>", self.on_snip_drag)
-        self.canvas.bind("<ButtonRelease-1>", self.on_button_release)
-        self.snip_win.bind("<Escape>", lambda e: self.snip_win.destroy())
-
-    def on_button_press(self, event):
-        self.start_x = self.snip_win.winfo_pointerx()
-        self.start_y = self.snip_win.winfo_pointery()
-        self.rect = self.canvas.create_rectangle(self.start_x, self.start_y, 1, 1, outline='red', width=2)
-
-    def on_snip_drag(self, event):
-        cur_x, cur_y = (self.snip_win.winfo_pointerx(), self.snip_win.winfo_pointery())
-        self.canvas.coords(self.rect, self.start_x, self.start_y, cur_x, cur_y)
-
-    def on_button_release(self, event):
-        end_x, end_y = (self.snip_win.winfo_pointerx(), self.snip_win.winfo_pointery())
-        self.snip_win.destroy()
-
-        x1 = min(self.start_x, end_x)
-        y1 = min(self.start_y, end_y)
-        x2 = max(self.start_x, end_x)
-        y2 = max(self.start_y, end_y)
-        
-        if x2 - x1 > 5 and y2 - y1 > 5:
-            img = ImageGrab.grab(bbox=(x1, y1, x2, y2))
-            self.callback(img)
+from constants import *
+from screenshot import SnippingTool
 
 class PictureRPA_GUI:
     def __init__(self, root):
@@ -75,20 +26,9 @@ class PictureRPA_GUI:
         self.listener = keyboard.Listener(on_press=self.on_press)
         self.listener.start()
 
-        # 操作类型映射
-        self.cmd_types = {
-            "单击左键 (找图)": 1.0,
-            "双击左键 (找图)": 2.0,
-            "单击右键 (找图)": 3.0,
-            "文本输入 (复制粘贴)": 4.0,
-            "等待时长 (秒)": 5.0,
-            "鼠标滚轮 (滑动)": 6.0,
-            "执行快捷键 (Hotkey)": 7.0,
-            "跳转:若找到图 (Goto)": 8.0,
-            "跳转:若没找到图 (Goto)": 9.0,
-            "结束流程 (Stop)": 10.0
-        }
-        self.rev_cmd_types = {v: k for k, v in self.cmd_types.items()}
+        # 使用 constants 中的映射
+        self.cmd_types = CMD_TYPES
+        self.rev_cmd_types = REV_CMD_TYPES
 
         self.setup_styles()
         self.build_ui()
@@ -430,6 +370,3 @@ class PictureRPA_GUI:
     def stop_run(self):
         self.is_running = False
         self.btn_run_once.config(state=tk.NORMAL); self.btn_run_loop.config(state=tk.NORMAL); self.btn_stop.config(state=tk.DISABLED)
-
-if __name__ == '__main__':
-    root = tk.Tk(); app = PictureRPA_GUI(root); root.mainloop()

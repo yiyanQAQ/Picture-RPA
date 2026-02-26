@@ -16,7 +16,10 @@
 - **流程编辑**
 
 ### 目录结构
-- `pictureRPA.py`: 主程序
+- `main.py`: 程序入口
+- `gui.py`: UI与事件逻辑
+- `utils.py`: 截图工具
+- `constants.py`: 配置项
 - `snips/`: 截图保存目录
 
 ### 运行
@@ -24,16 +27,15 @@
    ```bash
    git clone https://github.com/yiyanQAQ/Picture_RPA.git
    ```
-
 2. **配置环境**:
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   .venv\Scripts\activate
    pip install -r requirements.txt
    ```
 3. **启动程序**:
    ```bash
-   python pictureRPA.py
+   python main.py
    ```
 
 ---
@@ -50,8 +52,11 @@ A lightweight RPA tool based on image recognition.
 - **Workflow Editing**
 
 ### Directory Structure 
-   - pictureRPA.py: Main application
-   - snips/: Directory for saved screenshots
+- `main.py`: Entry point
+- `gui.py`: UI & logic
+- `screenshot.py`: Snipping utilities
+- `constants.py`: Config
+- `snips/`: Screenshot directory
 
 ### Installation
 1. **Clone**:
@@ -66,5 +71,5 @@ A lightweight RPA tool based on image recognition.
    ```
 3. **Run**:
    ```bash
-   python pictureRPA.py
+   python main.py
    ```
