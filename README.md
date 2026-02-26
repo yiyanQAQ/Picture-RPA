@@ -38,6 +38,9 @@
    python main.py
    ```
 
+### 许可协议
+本项目采用 [GPLv3](LICENSE) 开源协议。
+
 ---
 
 ## English
@@ -73,3 +76,6 @@ A lightweight RPA tool based on image recognition.
    ```bash
    python main.py
    ```
+
+### License
+This project is licensed under the [GPLv3](LICENSE) License.
