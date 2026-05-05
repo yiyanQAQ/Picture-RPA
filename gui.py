@@ -15,7 +15,7 @@ class PictureRPA_GUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Picture RPA v3.0 - Logic & Snip")
-        self.root.geometry("800x700")
+        self.root.geometry("852x730")
         self.root.configure(bg=COLOR_BG_CREAM)
 
         # 存储指令序列
